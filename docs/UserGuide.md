@@ -60,13 +60,13 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## **Feature 1: Add**
 ### Description:
-Adds a person to the list of people to be callers.
+Adds a person to the list of people to be callers.3
 
 ### Format:
 `add n/NAME p/PHONE_NUMBER e/EMAIL`
 
 ### Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com`
+* `add n/John Doe p/98765432 e/johnd@example.com `
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com`
 
 ## **Feature 2: Delete**
