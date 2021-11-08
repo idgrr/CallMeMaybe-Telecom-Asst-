@@ -35,13 +35,13 @@ Each Command section is separated into:<br>
 **:information_source: Note:** Straightforward commands such as 'list' may not have the sections "Things to note", "Examples" and "Common issues"
 </div>
 
-It is highly recommended that you familiarise yourself with the [Command Notations](#3-command-notations) we use. <br>
+It is highly recommended that you familiarise yourself with the [Command Notations](#4-command-notations) we use. <br>
 
 For new users, head over to [Quick Start](#2-quick-start) to get started. You can learn the command notations along the way as well. <br>
 
-For more experienced users, feel free to skip over to the [Features section](#4-overview-of-features) to check out detailed descriptions of the features offered in our application. <br>
+For more experienced users, feel free to skip over to the [Features](#5-overview-of-features) section to check out detailed descriptions of the features offered in our application. <br>
 
-If you have any questions about CMM, please refer to the [FAQ](#5-faq). <br>
+If you have any questions about CMM, please refer to the [FAQ](#6-faq). <br>
 
 Hope you have a great time with CMM.
 
@@ -64,7 +64,7 @@ Hope you have a great time with CMM.
 4. Double-click the file to start the app. A prompt will popup asking whether you want to import any new contacts. The prompt will look like the screenshot below :
 
    ![importPopUpUi](images/importPopUpMessage.png) <br>
-   To learn more about what each option does in detail, click [here](#414-importing-the-data-into-database).
+   To learn more about what each option does in detail, click [here](#514-importing-the-data-into-database).
    An example file import can be downloaded [here](https://github.com/AY2122S1-CS2103T-T13-4/tp/releases/tag/Test_Files)
 
 5. After you click any button on the prompt, CMM will execute the selected option, and a GUI similar to the screenshot below should appear in a few seconds. Note how the app contains some sample data upon first startup
@@ -97,7 +97,7 @@ Hope you have a great time with CMM.
 
 7. Remember to clear the sample data using `clear` command before adding your own data
 
-8. Refer to the [Features](#4-overview-of-features) below for details of each command
+8. Refer to the [Features](#5-overview-of-features) below for details of each command
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -107,27 +107,30 @@ Hope you have a great time with CMM.
 
 **Command Panel**
 
-![Ui](images/Command Panel.png)
+![Ui](images/Command Panel.png)<br>
 *Image of CMM's Command Panel*
 
-* User commands are entered in the Command Line (section labeled `Enter command here...`)
+* Commands are entered in the Command Line (section labeled `Enter command here...`)
+
 * The Feedback Box (the bottom section) displays the result of the command, which can be an error message if the command is invalid
 
 **Display List**
 
-![Ui](images/Display List.png)
+![Ui](images/Display List.png) <br>
 *Image of CMM's Display List*
 
 * Displays the list of contacts along with their contact details which includes the name, phone number, email address and isCalled attributes
 
 **Person Card**
 
-![Ui](images/Person Card.png)
+![Ui](images/PersonCard.png) <br>
 *Image of CMM's Person Card*
 
-* Displays additional information of each contact in the list of contacts. This includes the attributes age, gender, address and interests
-* When application is started, the first contact in the list is displayed. If the contact list is empty, then CMM displays an example
-  contact with example attributes. The example is purely visual, and doesn't exist in the actual contact list.
+* Displays additional information of each contact in the list of contacts. 
+This includes the attributes age, gender, address and interests
+
+* When application is started, the first contact in the list is displayed. If the contact list is empty,
+CMM displays an 'empty contact' with all the fields set to 'N.A'
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -263,7 +266,7 @@ Example:
 
 * `INDEX` **must be a positive integer** (e.g., 1, 2, 3, …​)
 
-* If you want to un-call a contact, use the [edit command](#44-editing-a-contact--edit)
+* If you want to un-call a contact, use the [edit command](#54-editing-a-contact--edit)
 
 **Common issues:**
 
@@ -354,7 +357,9 @@ Examples:
 
 * _Invalid command arguments_: <br>
 
-    a. Duplicate of the edited contact already exists on the address book <br>
+  a. Duplicate of the edited contact already exists on the address book <br>
+  (e.g., editing name from 'Bob' to 'bob' is not allowed. Since names are case-insensitive, both 'Bob' and 'bob' are recognised
+  as the same name)
 
 ### 5.5 Deleting a contact : `delete`
 
@@ -425,7 +430,7 @@ Format: `findAny [n/NAME…​] [p/PHONE…​] [e/EMAIL…​] [a/ADDRESS…​
 
 * `findAll` searches for contacts that satisfy **ALL** the fields specified
 
-Click [here](#47-finding-contacts-that-match-all-the-keywords-specified--findall) to learn more about findAll
+Click [here](#57-finding-contacts-that-match-all-the-keywords-specified--findall) to learn more about findAll
 
 </div>
 
@@ -493,7 +498,7 @@ Finds only the contacts that match all the keywords specified in their respectiv
 
 * `findAny` searches for contacts that satisfy **ANY** of the fields specified.<br>
 
-Click [here](#46-finding-contacts-that-match-any-of-the-keywords-specified-findany) to learn more about findAny
+Click [here](#56-finding-contacts-that-match-any-of-the-keywords-specified-findany) to learn more about findAny
 
 </div>
 
@@ -679,11 +684,13 @@ Currently, import is **irreversible**. Please double check before importing. Thi
 
 * CMM will prompt user for imports upon **every** application startup
 
-* CMM will not import data rows with missing details (Compulsory for data to have `name`, `phone`, `email` filled)
+* CMM will not import data rows with missing details (Compulsory for data to have `Name`, `Phone`, `Email` filled)
 
-* CMM will treat two people with the exact `name`, `phone`, `email`  as duplicates
+* CMM will treat two people with the exact `Name`, `Phone`, `Email`  as duplicates
 
-* CMM will update duplicate imports **only when** import status has been called
+* CMM will update duplicate imports **only when** `Called` status is true
+
+* `Interest` column in the csv should be seperated using a comma **within the same cell**
 
 * Import is only allowed during application startup. To import after the startup, simply reopen application to get the import prompt
 

@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTEREST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,15 +104,23 @@ public class EditCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.equals(editedPerson)) {
+            System.out.println("HELLO1");
             if (model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             } else {
                 model.setPerson(personToEdit, editedPerson);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             }
-        } else {
+        } else if (editPersonDescriptor.getName().isEmpty() && editPersonDescriptor.getPhone().isEmpty()
+                    && editPersonDescriptor.getEmail().isEmpty()) {
+
+            checkEqualsCalled(personToEdit, editPersonDescriptor);
+            checkEqualsAddress(personToEdit, editPersonDescriptor);
+            checkEqualsGender(personToEdit, editPersonDescriptor);
+            checkEqualsAge(personToEdit, editPersonDescriptor);
+
             model.setPerson(personToEdit, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        } else {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         DisplayCommand displayCommand = new DisplayCommand(Index.fromOneBased(index.getOneBased()));
@@ -249,6 +256,43 @@ public class EditCommand extends Command {
         this.listOfArguments.clear();
         this.indexesToBeRemoved.clear();
         this.interestsToBeAdded.clear();
+    }
+
+    private void checkEqualsCalled(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+
+        if (editPersonDescriptor.getIsCalled().isPresent()) {
+            if (editPersonDescriptor.getIsCalled().get().equals(personToEdit.getIsCalled())) {
+                throw new CommandException("Edited called status is already the same as the current called status!");
+            }
+        }
+    }
+
+    private void checkEqualsAddress(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+        if (editPersonDescriptor.getAddress().isPresent()) {
+            if (editPersonDescriptor.getAddress().get().equals(personToEdit.getAddress())) {
+                throw new CommandException("Edited address is already the same as the current address!");
+            }
+        }
+    }
+
+    private void checkEqualsGender(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+        if (editPersonDescriptor.getGender().isPresent()) {
+            if (editPersonDescriptor.getGender().get().equals(personToEdit.getGender())) {
+                throw new CommandException("Edited gender is already the same as the current gender!");
+            }
+        }
+    }
+
+    private void checkEqualsAge(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
+        if (editPersonDescriptor.getAge().isPresent()) {
+            if (editPersonDescriptor.getAge().get().equals(personToEdit.getAge())) {
+                throw new CommandException("Edited age is already the same as the current age!");
+            }
+        }
     }
 
     @Override
