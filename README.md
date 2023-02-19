@@ -9,7 +9,7 @@ ___
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
   * It comes with a **decent level of user and developer documentation**.
 * It is named `CallMeMaybe` because it tracks who have been called in the huge list of people to call.
-* Check out the documentation at our [website](https://ay2122s1-cs2103t-t13-4.github.io/tp/)!
+* Check out the documentation at our **[website](https://ay2122s1-cs2103t-t13-4.github.io/tp/)**!
 
 ### Project Adapted from AddressBook Level3
 * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
